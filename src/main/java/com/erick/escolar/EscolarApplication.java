@@ -1,6 +1,5 @@
 package com.erick.escolar;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -10,19 +9,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.erick.escolar.domain.Disciplina;
-import com.erick.escolar.domain.Pessoa;
 import com.erick.escolar.repositories.DisciplinaRepository;
-import com.erick.escolar.repositories.PessoaRepository;
 
 @SpringBootApplication
 public class EscolarApplication implements CommandLineRunner{
 
 	@Autowired
 	DisciplinaRepository disciplinaR;
-	
-	@Autowired
-	PessoaRepository pessoaR;
-	
+		
 	public static void main(String[] args) {
 		SpringApplication.run(EscolarApplication.class, args);
 	}
@@ -41,13 +35,16 @@ public class EscolarApplication implements CommandLineRunner{
 
 		disciplinaR.saveAll(Arrays.asList(d1, d2, d3, d4, d5));
 		
-		SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+//		SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Pessoa p1 = new Pessoa("Erick Candido da Luz", df1.parse("19/04/1995 10:10"), "43768646840", "Av. vereador Eduardo Cassanho", "312312312313", "443545424", data1);
-		Pessoa p2 = new Pessoa("Luiz Felipe Scolari", df1.parse("19/04/1995 10:10"), "00000000000", "Rio grande do sul", "546247653323", "23426456635", data1);
-		Pessoa p3 = new Pessoa("Adriano imperador", df1.parse("19/04/1995 10:10"), "1010110101010", "Rio de Janeiro", "342356416", "5342137455", data1);
+//		Pessoa p1 = new Pessoa("Erick Candido da Luz", df1.parse("19/04/1995 10:10"), "43768646840", "Av. vereador Eduardo Cassanho", "312312312313", "443545424", data1);
+//		Pessoa p2 = new Pessoa("Luiz Felipe Scolari", df1.parse("19/04/1995 10:10"), "00000000000", "Rio grande do sul", "546247653323", "23426456635", data1);
+//		Pessoa p3 = new Pessoa("Adriano imperador", df1.parse("19/04/1995 10:10"), "1010110101010", "Rio de Janeiro", "342356416", "5342137455", data1);
+//		
+//		pessoaR.saveAll(Arrays.asList(p1, p2, p3));
 		
-		pessoaR.saveAll(Arrays.asList(p1, p2, p3));
+		
+		
 		
 	}
 
