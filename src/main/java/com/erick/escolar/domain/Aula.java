@@ -14,7 +14,7 @@ public class Aula implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private Date horaInicio;
 	private Date horaFim;
@@ -23,8 +23,9 @@ public class Aula implements Serializable{
 		
 	}
 
-	public Aula(Date horaInicio, Date horaFim) {
+	public Aula(Integer id,Date horaInicio, Date horaFim) {
 		super();
+		this.id = id;
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
 	}

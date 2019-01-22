@@ -7,23 +7,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erick.escolar.services.PessoaService;
+import com.erick.escolar.services.CursoService;
 
 @RestController
-@RequestMapping(value="/pessoa")
-public class PessoaResource {
-	
-	@Autowired
-	private PessoaService pessoa;
+@RequestMapping(value="/curso")
+public class CursoResource {
 
+	@Autowired
+	private CursoService cursoS;
+	
 	@GetMapping
 	public ResponseEntity<?> listar(){
-		return ResponseEntity.ok(pessoa.listar());
+		return ResponseEntity.ok(cursoS.listar());
 	}
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
-		return ResponseEntity.ok(pessoa.buscar(id));
+		return ResponseEntity.ok(cursoS.buscar(id));
 	}
-
+	
+	
+	
 }

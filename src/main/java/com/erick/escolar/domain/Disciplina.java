@@ -1,12 +1,17 @@
 package com.erick.escolar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Disciplina implements Serializable{
@@ -14,24 +19,37 @@ public class Disciplina implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String nome;
 	private Date dataCadastro;
 	private String descricao;
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy="disciplinas")
+	private List<Curso> cursos = new ArrayList<>();
+	
 	public Disciplina() {
 		
 	}
 
-	public Disciplina(String nome, Date dataCadastro, String descricao) {
+	public Disciplina(Integer id,String nome, Date dataCadastro, String descricao) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.dataCadastro = dataCadastro;
 		this.descricao = descricao;
 	}
 
+	public List<Curso> getCursos(){
+		return cursos;
+	}
+	
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

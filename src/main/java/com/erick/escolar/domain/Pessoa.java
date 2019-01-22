@@ -7,14 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Pessoa implements Serializable	{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private Date dataNascimento;
@@ -29,9 +32,10 @@ public abstract class Pessoa implements Serializable	{
 		
 	}
 
-	public Pessoa(String nome, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
+	public Pessoa(Integer id, String nome, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
 			Date dataCadastro) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
