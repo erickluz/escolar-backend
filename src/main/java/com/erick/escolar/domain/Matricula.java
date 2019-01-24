@@ -1,12 +1,17 @@
 package com.erick.escolar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Matricula implements Serializable{
@@ -20,6 +25,18 @@ public class Matricula implements Serializable{
 	private Date dataMatricula;
 	private Date dataEncerramento;
 	
+	@ManyToOne
+	@JoinColumn(name="curso_id")
+	private Curso curso;
+	
+	@ManyToOne
+	@JoinColumn(name="aluno_id")
+	private Aluno aluno;
+	
+	@ManyToMany(mappedBy="matriculas")
+	private List<Turma> turmas = new ArrayList<>();
+	
+	
 	public Matricula() {
 		
 	}
@@ -29,6 +46,30 @@ public class Matricula implements Serializable{
 		this.id = id;
 		this.dataMatricula = dataMatricula;
 		this.dataEncerramento = dataEncerramento;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
 
 	public Integer getId() {

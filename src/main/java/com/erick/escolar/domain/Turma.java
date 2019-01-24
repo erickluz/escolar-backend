@@ -1,12 +1,19 @@
 package com.erick.escolar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Turma implements Serializable{
@@ -20,6 +27,19 @@ public class Turma implements Serializable{
 	private Date dataInicio;
 	private String local;
 	
+	@ManyToOne
+	@JoinColumn(name="curso_id")
+	private Curso curso;
+	
+	@ManyToMany
+	@JoinTable(name="TURMA_MATRICULA",
+	joinColumns = @JoinColumn(name="turma_id"),
+	inverseJoinColumns = @JoinColumn(name="matricula_id"))
+	private List<Matricula> matriculas = new ArrayList<>();
+	
+	@OneToMany(mappedBy="turma")
+	private List<Aula> aulas = new ArrayList<>();
+	
 	public Turma() {
 		
 	}
@@ -30,6 +50,30 @@ public class Turma implements Serializable{
 		this.nome = nome;
 		this.dataInicio = dataInicio;
 		this.local = local;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
+
+	public List<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
 	public Integer getId() {

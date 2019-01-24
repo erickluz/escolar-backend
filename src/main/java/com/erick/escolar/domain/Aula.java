@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Aula implements Serializable{
@@ -19,6 +21,18 @@ public class Aula implements Serializable{
 	private Date horaInicio;
 	private Date horaFim;
 	
+	@ManyToOne
+	@JoinColumn(name="disciplina_id")
+	private Disciplina disciplina;
+	
+	@ManyToOne
+	@JoinColumn(name="turma_id")
+	private Turma turma;
+	
+	@ManyToOne
+	@JoinColumn(name="professor_id")
+	private Professor professor;
+	
 	public Aula() {
 		
 	}
@@ -29,7 +43,30 @@ public class Aula implements Serializable{
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
 	}
+	
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
 
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
 	public Integer getId() {
 		return id;
 	}

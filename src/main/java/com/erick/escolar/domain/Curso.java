@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Curso implements Serializable{
@@ -29,6 +30,9 @@ public class Curso implements Serializable{
 	)
 	List<Disciplina> disciplinas = new ArrayList<>(); 
 	
+	@OneToMany(mappedBy="curso")
+	private List<Turma> turmas = new ArrayList<>();
+	
 	public Curso() {
 		
 	}
@@ -38,6 +42,14 @@ public class Curso implements Serializable{
 		this.id = id;
 		this.nome = nome;
 		this.descricaoCurso = descricaoCurso;
+	}
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
 
 	public List<Disciplina> getDisciplinas(){

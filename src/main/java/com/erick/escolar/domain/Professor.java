@@ -1,14 +1,20 @@
 package com.erick.escolar.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Professor extends Pessoa{
 
 	private static final long serialVersionUID = 1L;
 	private String formacao;
+	
+	@OneToMany(mappedBy="professor")
+	private List<Aula> aulas = new ArrayList<>();
 	
 	public Professor() {
 		
@@ -18,6 +24,14 @@ public class Professor extends Pessoa{
 			Date dataCadastro, String formacao) {
 		super(id, nome, dataNascimento, cpf, endereco, telefone1, telefone2, dataCadastro);
 		this.formacao = formacao;
+	}
+
+	public List<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
 	public String getFormacao() {

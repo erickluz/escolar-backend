@@ -42,6 +42,14 @@ public class Disciplina implements Serializable{
 		this.descricao = descricao;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public List<Curso> getCursos(){
 		return cursos;
 	}
