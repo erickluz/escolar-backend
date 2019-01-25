@@ -1,13 +1,17 @@
 package com.erick.escolar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -32,6 +36,14 @@ public class Aula implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="professor_id")
 	private Professor professor;
+	
+	@ManyToMany
+	@JoinTable(name="AULAS_PROFESSORES",
+	joinColumns = @JoinColumn(name="professor_id"),
+	inverseJoinColumns = @JoinColumn(name="aula_id")
+	)
+	private List<Professor> professores = new ArrayList<>();
+	
 	
 	public Aula() {
 		

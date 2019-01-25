@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erick.escolar.services.CursoService;
+import com.erick.escolar.services.TurmaService;
 
 @RestController
-@RequestMapping(value="/curso")
-public class CursoResource {
-
+@RequestMapping(value="/turma")
+public class TurmaResource {
+	
 	@Autowired
-	private CursoService cursoS;
+	private TurmaService turma;
 	
 	@GetMapping
 	public ResponseEntity<?> listar(){
-		return ResponseEntity.ok(cursoS.listar());
+		return ResponseEntity.ok(turma.listar());
 	}
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
-		return ResponseEntity.ok(cursoS.buscar(id));
+		return ResponseEntity.ok(turma.buscar(id));
 	}
 	
 }

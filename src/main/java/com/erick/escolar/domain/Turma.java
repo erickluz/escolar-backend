@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Turma implements Serializable{
 
@@ -37,6 +39,7 @@ public class Turma implements Serializable{
 	inverseJoinColumns = @JoinColumn(name="matricula_id"))
 	private List<Matricula> matriculas = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="turma")
 	private List<Aula> aulas = new ArrayList<>();
 	

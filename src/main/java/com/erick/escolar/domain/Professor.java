@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Professor extends Pessoa{
@@ -13,7 +15,8 @@ public class Professor extends Pessoa{
 	private static final long serialVersionUID = 1L;
 	private String formacao;
 	
-	@OneToMany(mappedBy="professor")
+	@JsonIgnore
+	@ManyToMany(mappedBy="professores")
 	private List<Aula> aulas = new ArrayList<>();
 	
 	public Professor() {
