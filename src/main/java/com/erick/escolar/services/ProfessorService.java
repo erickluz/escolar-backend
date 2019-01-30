@@ -23,4 +23,18 @@ public class ProfessorService {
 		return professorR.findById(id);
 	}
 	
+	public Professor inserir(Professor obj) {
+		return professorR.save(obj);
+	}
+	
+	public void alterar(Professor obj) {
+		buscar(obj.getId());
+		professorR.save(obj);
+	}
+
+	public void excluir(Integer id) {
+		buscar(id);
+		professorR.deleteById(id);
+	}
+	
 }

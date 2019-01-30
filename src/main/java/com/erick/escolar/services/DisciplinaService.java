@@ -23,4 +23,18 @@ public class DisciplinaService {
 		return repo.findAll();
 	}
 	
+	public Disciplina inserir(Disciplina obj) {
+		return repo.save(obj);
+	}
+	
+	public void alterar(Disciplina obj) {
+		buscar(obj.getId());
+		repo.save(obj);
+	}
+	
+	public void excluir(Integer id) {
+		buscar(id);
+		repo.deleteById(id);
+	}
+	
 }

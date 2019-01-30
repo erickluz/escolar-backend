@@ -23,4 +23,18 @@ public class AlunoService {
 		return alunoR.findById(id);
 	}
 	
+	public Aluno inserir(Aluno obj) {
+		return alunoR.save(obj);
+	}
+	
+	public void alterar(Aluno obj) {
+		buscar(obj.getId());
+		alunoR.save(obj);
+	}
+	
+	public void excluir(Integer id) {
+		buscar(id);
+		alunoR.deleteById(id);
+	}
+	
 }

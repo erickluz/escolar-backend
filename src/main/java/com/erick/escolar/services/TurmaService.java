@@ -23,4 +23,18 @@ public class TurmaService {
 		return turmaR.findById(id);
 	}
 	
+	public Turma inserir(Turma obj) {
+		return turmaR.save(obj);
+	}
+	
+	public void alterar(Turma obj) {
+		buscar(obj.getId());
+		turmaR.save(obj);
+	}
+	
+	public void excluir(Integer id) {
+		buscar(id);
+		turmaR.deleteById(id);
+	}
+	
 }

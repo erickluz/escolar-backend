@@ -23,4 +23,19 @@ public class CursoService {
 		return cursoR.findAll();
 	}
 	
+	public Curso inserir(Curso obj) {
+		return cursoR.save(obj);
+	}
+	
+	public void alterar(Curso obj) {
+		buscar(obj.getId());
+		cursoR.save(obj);
+	}
+	
+	public void excluir(Integer id) {
+		buscar(id);
+		cursoR.deleteById(id);
+	}
+	
+	
 }
