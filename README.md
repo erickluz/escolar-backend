@@ -1,8 +1,8 @@
-# Sistema de Controle Escolar
+﻿# Sistema de Controle Escolar
 Projeto para gerenciamento escolar, controle de alunos, matriculas, professores, cursos e disciplinas.
 # Modelo conceitual
 
-![alt text](https://github.com/erickluz/escolar/blob/master/src/main/resources/diagram/escolar.png)
+![alt text](https://github.com/erickluz/escolar/blob/master/src/main/resources/diagram/Diagrama escolar.png)
 
 # Endpoints
 
