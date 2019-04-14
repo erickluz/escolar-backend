@@ -2,7 +2,7 @@
 Projeto para gerenciamento escolar, controle de alunos, matriculas, professores, cursos e disciplinas.
 # Modelo conceitual
 
-![alt text](https://github.com/erickluz/escolar/blob/master/src/main/resources/diagram/Diagrama escolar.png)
+![alt text](https://github.com/erickluz/escolar/blob/master/src/main/resources/diagram/Diagramaescolar.png)
 
 # Endpoints
 
