@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ public class ProfessorResource {
 	@Autowired
 	private ProfessorService professor;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar(){
 		return ResponseEntity.ok(professor.listar());
@@ -47,8 +49,9 @@ public class ProfessorResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@CrossOrigin
 	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Void> excluir(@RequestBody Professor obj, @PathVariable Integer id){
+	public ResponseEntity<Void> excluir(@PathVariable Integer id){
 		professor.excluir(id);
 		return ResponseEntity.noContent().build();
 	}

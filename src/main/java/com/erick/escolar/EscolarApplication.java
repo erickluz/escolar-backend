@@ -69,7 +69,7 @@ public class EscolarApplication implements CommandLineRunner{
 		
 		
 		
-		Aluno al1 = new Aluno(null, "Erick Luz", data1, "123456789", "Av. das oportunidades", "3332-1221", "14 988334145", data1, "123456789");
+		Aluno al1 = new Aluno(null, "Erick", "Luz", "erickluz360@gmail.com", "senha1", data1, "123456789", "Av. das oportunidades", "3332-1221", "14 988334145", data1, "123456789");
 		
 		
 		
@@ -80,14 +80,15 @@ public class EscolarApplication implements CommandLineRunner{
 		Turma t4 = new Turma(null, "1-B", data1, "1o Andar");
 		Turma t5 = new Turma(null, "2-B", data1, "1o Andar");			
 		
-		Professor p1 = new Professor(null, "Adriano Imperador", data1, "123242341", "Rocinha", "3333-1111","99399-9999", data1, "Letras");
+		Professor p1 = new Professor(null, "Adriano", "Imperador", "adriano@gmail.com", "senha2", data1, "123242341", "Rocinha", "3333-1111","99399-9999", data1, "Letras");
 		
 		SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		Aula a1 = new Aula(null, df1.parse("19/01/2019 22:00"), df1.parse("19/01/2019 22:00"));
 		
 		p1.setAulas(Arrays.asList(a1));
-		a1.setProfessor(p1);
+		a1.setProfessores(Arrays.asList(p1));
+		
 		a1.setTurma(t1);
 		
 		disciplinaR.saveAll(Arrays.asList(d1, d2, d3, d4, d5));

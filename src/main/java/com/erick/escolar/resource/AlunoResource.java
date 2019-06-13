@@ -1,9 +1,9 @@
 package com.erick.escolar.resource;
 
-import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erick.escolar.domain.Aluno;
 import com.erick.escolar.services.AlunoService;
@@ -34,12 +33,23 @@ public class AlunoResource {
 		return ResponseEntity.ok(aluno.buscar(id));
 	}
 	
+//	@CrossOrigin
+//	@PostMapping
+//	public ResponseEntity<Aluno> inserir(@RequestBody Aluno obj){
+//		System.out.println(obj.toStr);
+//		aluno.inserir(obj);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
+//		return ResponseEntity.created(uri).build(); 
+//	}
+	
+	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Aluno> inserir(@RequestBody Aluno obj){
-		aluno.inserir(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build(); 
-	}
+	public void inserir(@RequestBody String obj){
+		System.out.println(obj);
+//		aluno.inserir(obj);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
+//		return ResponseEntity.created(uri).build(); 
+	}	
 	
 	@PutMapping(value="/{id}")
 	public ResponseEntity<Void> alterar(@RequestBody Aluno obj, @PathVariable Integer id){

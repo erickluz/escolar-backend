@@ -32,15 +32,11 @@ public class Aula implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="turma_id")
 	private Turma turma;
-	
-	@ManyToOne
-	@JoinColumn(name="professor_id")
-	private Professor professor;
-	
+		
 	@ManyToMany
 	@JoinTable(name="AULAS_PROFESSORES",
-	joinColumns = @JoinColumn(name="professor_id"),
-	inverseJoinColumns = @JoinColumn(name="aula_id")
+	joinColumns = @JoinColumn(name="aula_id"),
+	inverseJoinColumns = @JoinColumn(name="professor_id")
 	)
 	private List<Professor> professores = new ArrayList<>();
 	
@@ -72,12 +68,12 @@ public class Aula implements Serializable{
 		this.turma = turma;
 	}
 
-	public Professor getProfessor() {
-		return professor;
+	public List<Professor> getProfessores() {
+		return professores;
 	}
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setProfessores(List<Professor> professor) {
+		this.professores = professor;
 	}
 	public Integer getId() {
 		return id;

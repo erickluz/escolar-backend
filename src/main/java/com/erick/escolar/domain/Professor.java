@@ -23,9 +23,9 @@ public class Professor extends Pessoa{
 		
 	}
 
-	public Professor(Integer id, String nome, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
+	public Professor(Integer id, String nome, String sobrenome, String email, String senha, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
 			Date dataCadastro, String formacao) {
-		super(id, nome, dataNascimento, cpf, endereco, telefone1, telefone2, dataCadastro);
+		super(id, nome, sobrenome, email, senha, dataNascimento, cpf, endereco, telefone1, telefone2, dataCadastro);
 		this.formacao = formacao;
 	}
 

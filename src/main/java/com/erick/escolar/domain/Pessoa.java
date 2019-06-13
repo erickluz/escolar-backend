@@ -20,8 +20,11 @@ public abstract class Pessoa implements Serializable	{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Date dataNascimento;
+	private String sobrenome;
+	private String email;
+	private String senha;
 	private String cpf;
+	private Date dataNascimento;	
 	private String endereco;
 	private String telefone1;
 	private String telefone2;
@@ -32,11 +35,14 @@ public abstract class Pessoa implements Serializable	{
 		
 	}
 
-	public Pessoa(Integer id, String nome, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
+	public Pessoa(Integer id, String nome, String sobrenome, String email, String senha, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
 			Date dataCadastro) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.endereco = endereco;
@@ -63,6 +69,14 @@ public abstract class Pessoa implements Serializable	{
 		this.nome = nome;
 	}
 
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -126,6 +140,22 @@ public abstract class Pessoa implements Serializable	{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override

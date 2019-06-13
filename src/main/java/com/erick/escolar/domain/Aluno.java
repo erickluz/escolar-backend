@@ -20,9 +20,9 @@ public class Aluno extends Pessoa{
 		
 	}
 
-	public Aluno(Integer id, String nome, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
+	public Aluno(Integer id, String nome, String sobrenome, String email, String senha, Date dataNascimento, String cpf, String endereco, String telefone1, String telefone2,
 			Date dataCadastro, String RA) {
-		super(id, nome, dataNascimento, cpf, endereco, telefone1, telefone2, dataCadastro);
+		super(id, nome, sobrenome, email, senha, dataNascimento, cpf, endereco, telefone1, telefone2, dataCadastro);
 		this.RA = RA;
 	}
 
@@ -42,6 +42,5 @@ public class Aluno extends Pessoa{
 		RA = rA;
 	}
 	
-	
-	
+
 }
