@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erick.escolar.domain.Professor;
 import com.erick.escolar.repositories.ProfessorRepository;
+import com.erick.escolar.services.exceptions.IntegridadeDeDados;
 
 @Service
 public class ProfessorService {
@@ -33,8 +34,13 @@ public class ProfessorService {
 	}
 
 	public void excluir(Integer id) {
-		buscar(id);
-		professorR.deleteById(id);
+		buscar(id);	
+		try {	
+			professorR.deleteById(id);
+		}catch(Exception e) {
+			throw new IntegridadeDeDados("Nao foi possivel excluir o professor pois ele tem aulas marcadas !!!");
+		}
+		
 	}
 	
 }

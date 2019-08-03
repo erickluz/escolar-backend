@@ -183,4 +183,11 @@ public abstract class Pessoa implements Serializable	{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha="
+				+ senha + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", endereco=" + endereco
+				+ ", telefone1=" + telefone1 + ", telefone2=" + telefone2 + ", dataCadastro=" + dataCadastro + "]";
+	}
+
 }

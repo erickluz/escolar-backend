@@ -35,9 +35,11 @@ public class ProfessorResource {
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
 		return ResponseEntity.ok(professor.buscar(id));
 	}
-	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Professor> inserir(@RequestBody Professor obj){
+		System.out.println("ERICK TST");
+		System.out.println(obj.toString());
 		professor.inserir(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -51,7 +53,7 @@ public class ProfessorResource {
 	
 	@CrossOrigin
 	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable Integer id){
+	public ResponseEntity<?> excluir(@PathVariable Integer id){
 		professor.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
