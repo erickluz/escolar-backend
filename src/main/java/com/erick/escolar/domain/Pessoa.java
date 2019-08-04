@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.erick.escolar.utils.Utilidades;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Pessoa implements Serializable	{
@@ -78,8 +80,8 @@ public abstract class Pessoa implements Serializable	{
 		this.sobrenome = sobrenome;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public String getDataNascimento() {
+		return Utilidades.timestampToDate2(dataNascimento);
 	}
 
 
@@ -128,8 +130,8 @@ public abstract class Pessoa implements Serializable	{
 	}
 
 
-	public Date getDataCadastro() {
-		return dataCadastro;
+	public String  getDataCadastro() {
+		return Utilidades.timestampToDate2(dataCadastro);
 	}
 
 

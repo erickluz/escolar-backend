@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,16 +25,19 @@ public class DisciplinaResource {
 	@Autowired
 	private DisciplinaService disciplina;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<?> listar(){
 		return ResponseEntity.ok(disciplina.listar());
 	}
 	
+	@CrossOrigin
 	@GetMapping(value="/{id}")
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
 		return ResponseEntity.ok(disciplina.buscar(id));
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Disciplina> inserir(@RequestBody Disciplina obj){
 		disciplina.inserir(obj);
@@ -47,6 +51,7 @@ public class DisciplinaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@CrossOrigin
 	@DeleteMapping(value="{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Integer id){
 		disciplina.excluir(id);

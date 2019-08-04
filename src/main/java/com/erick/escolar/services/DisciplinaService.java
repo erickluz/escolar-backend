@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erick.escolar.domain.Disciplina;
 import com.erick.escolar.repositories.DisciplinaRepository;
+import com.erick.escolar.services.exceptions.IntegridadeDeDados;
 
 @Service
 public class DisciplinaService {
@@ -34,7 +35,11 @@ public class DisciplinaService {
 	
 	public void excluir(Integer id) {
 		buscar(id);
-		repo.deleteById(id);
+		try {
+			repo.deleteById(id);
+		}catch (RuntimeException e) {
+			throw new IntegridadeDeDados("Existem cursos cadastrados com essa disciplina!");
+		}
 	}
 	
 }
