@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erick.escolar.domain.Aluno;
 import com.erick.escolar.repositories.AlunoRepository;
+import com.erick.escolar.services.exceptions.IntegridadeDeDados;
 
 @Service
 public class AlunoService {
@@ -34,7 +35,11 @@ public class AlunoService {
 	
 	public void excluir(Integer id) {
 		buscar(id);
-		alunoR.deleteById(id);
+		try {
+			alunoR.deleteById(id);
+		}catch (RuntimeException e) {
+			throw new IntegridadeDeDados("Erro ao deletar alunos");
+		}
 	}
 	
 }

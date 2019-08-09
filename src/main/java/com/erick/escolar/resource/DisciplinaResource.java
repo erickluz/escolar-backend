@@ -45,6 +45,7 @@ public class DisciplinaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@CrossOrigin
 	@PutMapping(value="/{id}")
 	public ResponseEntity<Void> alterar(@RequestBody Disciplina obj, @PathVariable Integer id){
 		disciplina.alterar(obj);
