@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erick.escolar.domain.Turma;
 import com.erick.escolar.repositories.TurmaRepository;
+import com.erick.escolar.services.exceptions.IntegridadeDeDados;
 
 @Service
 public class TurmaService {
@@ -34,7 +35,12 @@ public class TurmaService {
 	
 	public void excluir(Integer id) {
 		buscar(id);
-		turmaR.deleteById(id);
+		try {
+			turmaR.deleteById(id);	
+		} catch (RuntimeException e) {
+			throw new IntegridadeDeDados("Nao se pode excluir Turmas que ja tenham Alunos e Disciplinas");
+		}
+		
 	}
 	
 }

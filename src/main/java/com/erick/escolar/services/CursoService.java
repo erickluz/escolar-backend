@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.erick.escolar.domain.Curso;
 import com.erick.escolar.repositories.CursoRepository;
+import com.erick.escolar.services.exceptions.IntegridadeDeDados;
 
 @Service
 public class CursoService {
@@ -32,9 +33,13 @@ public class CursoService {
 		cursoR.save(obj);
 	}
 	
-	public void excluir(Integer id) {
+	public void excluir(Integer id) {		
 		buscar(id);
-		cursoR.deleteById(id);
+		try {
+			cursoR.deleteById(id);
+		} catch (RuntimeException e) {
+			throw new IntegridadeDeDados("Nao se pode deletar Cursos que estejam em Turmas");
+		}
 	}
 	
 	

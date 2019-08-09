@@ -1,5 +1,5 @@
 package com.erick.escolar.resource;
-
+		
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
