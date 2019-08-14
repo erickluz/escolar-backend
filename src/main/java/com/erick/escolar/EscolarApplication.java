@@ -90,6 +90,7 @@ public class EscolarApplication implements CommandLineRunner{
 		a1.setProfessores(Arrays.asList(p1));
 		
 		a1.setTurma(t1);
+		t1.setAulas(Arrays.asList(a1));
 		
 		disciplinaR.saveAll(Arrays.asList(d1, d2, d3, d4, d5));
 		cursoR.saveAll(Arrays.asList(c1, c2));

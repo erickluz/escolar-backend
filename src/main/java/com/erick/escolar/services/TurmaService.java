@@ -20,7 +20,7 @@ public class TurmaService {
 		return turmaR.findAll();
 	}
 	
-	public Optional<Turma> buscar(Integer id){
+	public Optional<Turma> buscar(Integer id){	
 		return turmaR.findById(id);
 	}
 	
