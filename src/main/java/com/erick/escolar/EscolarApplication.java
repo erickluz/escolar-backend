@@ -13,12 +13,14 @@ import com.erick.escolar.domain.Aluno;
 import com.erick.escolar.domain.Aula;
 import com.erick.escolar.domain.Curso;
 import com.erick.escolar.domain.Disciplina;
+import com.erick.escolar.domain.Matricula;
 import com.erick.escolar.domain.Professor;
 import com.erick.escolar.domain.Turma;
 import com.erick.escolar.repositories.AlunoRepository;
 import com.erick.escolar.repositories.AulaRepository;
 import com.erick.escolar.repositories.CursoRepository;
 import com.erick.escolar.repositories.DisciplinaRepository;
+import com.erick.escolar.repositories.MatriculaRepository;
 import com.erick.escolar.repositories.ProfessorRepository;
 import com.erick.escolar.repositories.TurmaRepository;
 
@@ -42,6 +44,9 @@ public class EscolarApplication implements CommandLineRunner{
 	
 	@Autowired
 	AulaRepository aulaR;
+	
+	@Autowired
+	MatriculaRepository matR;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(EscolarApplication.class, args);
@@ -68,10 +73,10 @@ public class EscolarApplication implements CommandLineRunner{
 		c2.getDisciplinas().addAll(Arrays.asList(d1));
 		
 		
-		
+		Matricula mat = new Matricula(null, data1, data1);
 		Aluno al1 = new Aluno(null, "Erick", "Luz", "erickluz360@gmail.com", "senha1", data1, "123456789", "Av. das oportunidades", "3332-1221", "14 988334145", data1, "123456789");
-		
-		
+		al1.addMatricula(mat);
+		mat.setAluno(al1);
 		
 		Turma t1 = new Turma(null, "3-B", data1, "Terreo");
 		Turma t2 = new Turma(null, "2-B", data1, "Terreo");
@@ -98,6 +103,7 @@ public class EscolarApplication implements CommandLineRunner{
 		turmaR.saveAll(Arrays.asList(t1, t2, t3, t4, t5));
 		professorR.save(p1);
 		aulaR.save(a1);
+		matR.save(mat);
 		
 	}
 

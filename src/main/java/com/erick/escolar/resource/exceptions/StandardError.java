@@ -1,17 +1,31 @@
 package com.erick.escolar.resource.exceptions;
 
-public class StandardError {
-	private static final long serialVersionUID = 1L;
-	
-	private Integer status;
-	private String msg;
-	private String instante;
+import java.io.Serializable;
 
-	public StandardError(Integer status, String msg, String instante) {
+public class StandardError implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	private Long timestamp;
+	private Integer status;
+	private String error;
+	private String message;
+	private String path;
+	
+	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
 		super();
+		this.timestamp = timestamp;
 		this.status = status;
-		this.msg = msg;
-		this.instante = instante;
+		this.error = error;
+		this.message = message;
+		this.path = path;
+	}
+
+	public Long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public Integer getStatus() {
@@ -22,23 +36,27 @@ public class StandardError {
 		this.status = status;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getError() {
+		return error;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setError(String error) {
+		this.error = error;
 	}
 
-	public String getInstante() {
-		return this.instante;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setInstante(String instante) {
-		this.instante = instante;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

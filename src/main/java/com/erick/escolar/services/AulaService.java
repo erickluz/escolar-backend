@@ -9,19 +9,22 @@ import org.springframework.stereotype.Service;
 import com.erick.escolar.domain.Aula;
 import com.erick.escolar.repositories.AulaRepository;
 import com.erick.escolar.services.exceptions.IntegridadeDeDados;
+import com.erick.escolar.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AulaService {
 
 	@Autowired
 	private AulaRepository AulaR;
-	
+		
 	public List<Aula> listar(){
 		return AulaR.findAll();
 	}
 	
-	public Optional<Aula> buscar(Integer id){
-		return AulaR.findById(id);
+	public Aula buscar(Integer id){
+		Optional<Aula> obj = AulaR.findById(id); 
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Aula.class.getName()));
 	}
 	
 	public Aula inserir(Aula obj) {

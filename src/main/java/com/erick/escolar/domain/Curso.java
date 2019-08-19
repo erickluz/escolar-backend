@@ -85,6 +85,12 @@ public class Curso implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricaoCurso=" + descricaoCurso + ", disciplinas="
+				+ disciplinas + ", turmas=" + turmas + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

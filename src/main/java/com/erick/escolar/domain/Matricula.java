@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Matricula implements Serializable{
 
@@ -29,6 +31,7 @@ public class Matricula implements Serializable{
 	@JoinColumn(name="curso_id")
 	private Curso curso;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
@@ -94,6 +97,12 @@ public class Matricula implements Serializable{
 
 	public void setDataEncerramento(Date dataEncerramento) {
 		this.dataEncerramento = dataEncerramento;
+	}
+
+	@Override
+	public String toString() {
+		return "Matricula [id=" + id + ", dataMatricula=" + dataMatricula + ", dataEncerramento=" + dataEncerramento
+				+ ", curso=" + curso + ", aluno=" + aluno + ", turmas=" + turmas + "]";
 	}
 
 	@Override

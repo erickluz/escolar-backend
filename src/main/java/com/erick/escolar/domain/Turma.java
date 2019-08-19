@@ -116,6 +116,12 @@ public class Turma implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "Turma [id=" + id + ", nome=" + nome + ", dataInicio=" + dataInicio + ", local=" + local + ", curso="
+				+ curso + ", matriculas=" + matriculas + ", aulas=" + aulas + ", toString()=" + super.toString() + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

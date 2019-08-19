@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.erick.escolar.domain.Disciplina;
 import com.erick.escolar.repositories.DisciplinaRepository;
 import com.erick.escolar.services.exceptions.IntegridadeDeDados;
+import com.erick.escolar.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class DisciplinaService {
@@ -16,8 +17,10 @@ public class DisciplinaService {
 	@Autowired
 	private DisciplinaRepository repo;
 	
-	public Optional<Disciplina> buscar(Integer id){
-		return repo.findById(id);
+	public Disciplina buscar(Integer id){
+		Optional<Disciplina> obj = repo.findById(id); 
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Disciplina.class.getName()));
 	}
 	
 	public List<Disciplina> listar(){

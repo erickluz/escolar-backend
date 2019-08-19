@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.erick.escolar.domain.Turma;
+import com.erick.escolar.dto.TurmaDTO;
 import com.erick.escolar.services.TurmaService;
 
 @RestController
@@ -39,9 +40,10 @@ public class TurmaResource {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Turma> inserir(@RequestBody Turma obj, @PathVariable Integer id){
-		turma.inserir(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
+	public ResponseEntity<Turma> inserir(@RequestBody TurmaDTO objDTO){
+		Turma t1 = turma.fromDTO(objDTO);
+		turma.inserir(t1);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(t1.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

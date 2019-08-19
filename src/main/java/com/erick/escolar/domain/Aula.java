@@ -100,6 +100,12 @@ public class Aula implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "Aula [id=" + id + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", disciplina=" + disciplina
+				+ ", turma=" + turma + ", professores=" + professores + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
