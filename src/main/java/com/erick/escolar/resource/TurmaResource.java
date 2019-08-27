@@ -35,15 +35,16 @@ public class TurmaResource {
 	@CrossOrigin
 	@GetMapping(value="/{id}")
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
-		return ResponseEntity.ok(turma.buscar(id));
+		TurmaDTO tdto = new TurmaDTO(turma.buscar(id));
+		return ResponseEntity.ok(tdto);
 	}
 	
 	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Turma> inserir(@RequestBody TurmaDTO objDTO){
 		Turma t1 = turma.fromDTO(objDTO);
-		turma.inserir(t1);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(t1.getId()).toUri();
+		t1 = turma.inserir(t1);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(t1.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

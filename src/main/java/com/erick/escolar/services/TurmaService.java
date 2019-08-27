@@ -12,8 +12,10 @@ import com.erick.escolar.domain.Matricula;
 import com.erick.escolar.domain.Professor;
 import com.erick.escolar.domain.Turma;
 import com.erick.escolar.dto.TurmaDTO;
+import com.erick.escolar.repositories.AulaRepository;
 import com.erick.escolar.repositories.TurmaRepository;
 import com.erick.escolar.services.exceptions.IntegridadeDeDados;
+import com.erick.escolar.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TurmaService {
@@ -26,49 +28,47 @@ public class TurmaService {
 	
 	@Autowired
 	private MatriculaService matriculaS;
-	
-	@Autowired
-	private AulaService aulaS;
-	
+		
 	@Autowired 
 	ProfessorService professorS;
 	
 	@Autowired
 	DisciplinaService disciplinaS;
 	
+	@Autowired
+	AulaRepository aulaR;
+	
 	public List<Turma> listar(){
 		return turmaR.findAll();
 	}
 	
-	public Optional<Turma> buscar(Integer id){	
-		return turmaR.findById(id);
+	public Turma buscar(Integer id){
+		Optional<Turma> obj = turmaR.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Turma.class.getName()));
 	}
 	
 	public Turma inserir(Turma obj) {
-		System.out.println("a salvar: " + obj.toString());
-		System.out.println("Curso: " + obj.getCurso().getId());
-		
 		Curso curso = cursoS.buscar(obj.getCurso().getId());
-		
 		obj.setCurso(curso);
 		for(Matricula matricula : obj.getMatriculas()) {
-			System.out.println("Matricula: " + matricula.getId());
 			matricula = matriculaS.buscar(matricula.getId());
-			
 		}		
-		
 		for (Aula aula: obj.getAulas()){			
-			System.out.println("Aula: " + aula.getId());
 			for(Professor professor: aula.getProfessores()) {
 				System.out.println("Professor: " + professor.getId());
 				professor = professorS.buscar(professor.getId());
 			}
-			aula.setDisciplina(disciplinaS.buscar(aula.getDisciplina().getId()));
-			aula = aulaS.inserir(aula);
-			
-		}		
-		System.out.println("Salvando turma...: " + obj.toString());
-		return turmaR.save(obj);
+			aula.setDisciplina(disciplinaS.buscar(aula.getDisciplina().getId()));			
+		}
+		for (Aula aula: obj.getAulas()){
+			aula.setTurma(obj);
+		}	
+		Turma objn = turmaR.save(obj);
+		for (Aula aula: obj.getAulas()){
+			aulaR.save(aula);
+		}
+		return objn;
 	}
 	
 	public void alterar(Turma obj) {
@@ -81,7 +81,7 @@ public class TurmaService {
 		try {
 			turmaR.deleteById(id);	
 		} catch (RuntimeException e) {
-			throw new IntegridadeDeDados("Nao se pode excluir Turmas que ja tenham Alunos e Disciplinas");
+			throw new IntegridadeDeDados("Nao se pode excluir Turmas que ja tenham Alunos ou Aulas");
 		}
 		
 	}

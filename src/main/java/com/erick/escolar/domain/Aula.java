@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Aula implements Serializable{
 
@@ -29,6 +31,7 @@ public class Aula implements Serializable{
 	@JoinColumn(name="disciplina_id")
 	private Disciplina disciplina;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="turma_id")
 	private Turma turma;

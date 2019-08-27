@@ -36,6 +36,7 @@ public class Matricula implements Serializable{
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="matriculas")
 	private List<Turma> turmas = new ArrayList<>();
 	

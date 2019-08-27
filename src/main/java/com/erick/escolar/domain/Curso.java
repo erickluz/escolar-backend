@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Curso implements Serializable{
 
@@ -30,6 +32,7 @@ public class Curso implements Serializable{
 	)
 	List<Disciplina> disciplinas = new ArrayList<>(); 
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="curso")
 	private List<Turma> turmas = new ArrayList<>();
 	
